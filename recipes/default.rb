@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+cron_config "config" do
+  action :add
+end
+
 node['cron']['package_name'].each do |pkg|
   package pkg
 end

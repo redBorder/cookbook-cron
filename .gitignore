@@ -46,3 +46,7 @@ vendor/
 .vagrant/
 .vagrant.d/
 .kitchen/
+
+# SOURCES and pkgs
+SOURCES
+pkgs

@@ -75,7 +75,7 @@ def self.validate_dow(spec)
   end
 end
 
-actions :create, :create_if_missing, :delete
+actions :create, :create_if_missing, :delete, :add
 default_action :create
 
 attribute :name, kind_of: String, name_attribute: true
