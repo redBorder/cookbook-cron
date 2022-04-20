@@ -19,6 +19,32 @@
 
 use_inline_resources
 
+action :add do
+  begin
+    template "/etc/sysconfig/crond" do
+      source "cron_sysconfig.erb"
+      cookbook "cron"
+      owner "root"
+      group "root"
+      mode '0600'
+      retries 2
+      notifies :restart, 'service[crond]', :delayed
+    end
+
+    service "crond" do
+      service_name "crond"
+      ignore_failure true
+      supports :status => true, :reload => true, :restart => true
+      action [:enable, :start]
+    end
+
+  Chef::Log.info("cookbook cron has been processed.")
+  rescue => e
+    Chef::Log.error(e.message)
+  end
+
+end
+
 action :delete do
   # cleanup the legacy named job if it exists
   file 'legacy named cron.d file' do
